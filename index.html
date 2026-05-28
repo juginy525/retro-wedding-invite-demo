@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리 결혼합니다 💍</title>
+    <link href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f9f8f4;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --accent-orange: #ff7a45;
+            --accent-blue: #69c0ff;
+            --pixel-border: 4px dashed #ff7a45;
+            --solid-border: 3px solid #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #e5e5e5;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .mobile-container {
+            width: 100%;
+            max-width: 420px;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .retro-font {
+            font-family: 'Galmuri11', sans-serif; /* 픽셀 폰트 */
+        }
+
+        /* 미니홈피 상단 바 느낌 */
+        .top-bar {
+            background-color: var(--accent-orange);
+            color: white;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            border-bottom: var(--solid-border);
+        }
+
+        .hero-section {
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px dashed #ccc;
+        }
+
+        .pixel-art-placeholder {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 24px;
+            background-color: #fff;
+            border: var(--solid-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .pixel-art-placeholder::after {
+            content: "💑";
+            font-size: 60px;
+            image-rendering: pixelated;
+        }
+
+        .pixel-art-placeholder p {
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--accent-orange);
+        }
+
+        .hero-title {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .hero-date {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .section {
+            padding: 32px 20px;
+            border-bottom: 2px dashed #ccc;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::before {
+            content: "▶";
+            font-size: 12px;
+            color: var(--accent-orange);
+        }
+
+        .greeting-text {
+            text-align: center;
+            font-size: 15px;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        .info-box {
+            background: #fff;
+            border: var(--solid-border);
+            padding: 16px;
+            margin-top: 16px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+        }
+
+        .info-item {
+            margin-bottom: 12px;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 14px;
+            color: var(--accent-orange);
+            margin-bottom: 4px;
+        }
+
+        .info-item p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* 아코디언 버튼 */
+        .accordion-btn {
+            width: 100%;
+            background-color: #fff;
+            border: var(--solid-border);
+            padding: 12px;
+            font-size: 15px;
+            text-align: left;
+            cursor: pointer;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+        
+        .accordion-btn:active {
+            box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
+            transform: translate(2px, 2px);
+        }
+
+        .accordion-content {
+            display: none;
+            background-color: #fff;
+            border: 2px dashed #ccc;
+            padding: 16px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .accordion-content p {
+            margin-bottom: 8px;
+        }
+
+        /* 일촌평 (방명록) */
+        .guestbook-form {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .guestbook-input {
+            flex: 1;
+            padding: 8px;
+            border: var(--solid-border);
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .guestbook-submit {
+            background-color: var(--accent-blue);
+            color: white;
+            border: var(--solid-border);
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .comment-list {
+            list-style: none;
+        }
+
+        .comment-item {
+            display: flex;
+            gap: 8px;
+            font-size: 13px;
+            padding: 8px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        .comment-name {
+            font-weight: bold;
+            color: var(--accent-orange);
+            white-space: nowrap;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 12px;
+            color: var(--text-muted);
+            background-color: #fff;
+            border-top: var(--solid-border);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <!-- 상단 바 -->
+        <div class="top-bar retro-font">
+            <span>TODAY 24 | TOTAL 1024</span>
+            <span>https://mini.wedding/...</span>
+        </div>
+
+        <!-- 메인 히어로 -->
+        <header class="hero-section">
+            <div class="pixel-art-placeholder retro-font">
+                <!-- 아이콘으로 대체된 도트 커플 자리 -->
+                <p>[도트 미니미 커플]</p>
+            </div>
+            <h1 class="hero-title retro-font">지훈 <span>&amp;</span> 수아</h1>
+            <p class="hero-date retro-font">2026. 10. 24. SAT 12:00 PM</p>
+            <p style="font-size: 14px; color: var(--text-muted);">우리, 결혼합니다!</p>
+        </header>
+
+        <!-- 인사말 -->
+        <section class="section">
+            <h2 class="section-title retro-font">초대의 글</h2>
+            <div class="greeting-text">
+                <p>싸이월드 브금으로 마음을 전하던 그 시절처럼,</p>
+                <p>저희 두 사람이 만나 평생의 '일촌'을 맺으려 합니다.</p>
+                <br>
+                <p>소중한 발걸음 하시어</p>
+                <p>저희의 새로운 방명록 첫 페이지를</p>
+                <p>따뜻한 축하로 채워주시면 감사하겠습니다.</p>
+            </div>
+        </section>
+
+        <!-- 예식장 정보 -->
+        <section class="section">
+            <h2 class="section-title retro-font">오시는 길</h2>
+            <div class="info-box">
+                <div class="info-item">
+                    <strong class="retro-font">일시</strong>
+                    <p>2026년 10월 24일 토요일 낮 12시</p>
+                </div>
+                <div class="info-item">
+                    <strong class="retro-font">장소</strong>
+                    <p>픽셀 웨딩홀 3층 미니미홀</p>
+                    <p style="font-size: 12px; margin-top:4px;">서울시 강남구 도트빌딩 123</p>
+                </div>
+                <div class="info-item">
+                    <strong class="retro-font">교통편</strong>
+                    <p>🚌 버스 : 1004번, 777번</p>
+                    <p>🚇 지하철 : 2호선 픽셀역 1번 출구</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 마음 전하실 곳 (아코디언) -->
+        <section class="section" style="background-color: #fff;">
+            <h2 class="section-title retro-font">마음 전하실 곳</h2>
+            <p style="font-size: 13px; margin-bottom: 16px; color: var(--text-muted);">직접 참석하지 못하시는 분들을 위해 계좌번호를 기재하였습니다.</p>
+            
+            <button class="accordion-btn retro-font" onclick="toggleAccordion('groom')">
+                신랑측 계좌번호 보기 <span>▼</span>
+            </button>
+            <div id="groom" class="accordion-content">
+                <p><strong>신랑 김지훈</strong> | 국민 123-456-7890</p>
+                <p><strong>혼주 김철수</strong> | 신한 111-222-3333</p>
+            </div>
+
+            <button class="accordion-btn retro-font" onclick="toggleAccordion('bride')">
+                신부측 계좌번호 보기 <span>▼</span>
+            </button>
+            <div id="bride" class="accordion-content">
+                <p><strong>신부 이수아</strong> | 우리 987-654-3210</p>
+                <p><strong>혼주 이영희</strong> | 하나 999-888-7777</p>
+            </div>
+        </section>
+
+        <!-- 일촌평 -->
+        <section class="section">
+            <h2 class="section-title retro-font">일촌평 남기기</h2>
+            <div class="guestbook-form">
+                <input type="text" class="guestbook-input" placeholder="축하의 한마디를 남겨주세요!">
+                <button class="guestbook-submit retro-font" onclick="alert('일촌평이 등록되었습니다! (퍼블리싱 데모)')">확인</button>
+            </div>
+            <ul class="comment-list">
+                <li class="comment-item">
+                    <span class="comment-name">퍼가요~♡</span>
+                    <span class="comment-text">결혼 넘넘 축하해!! 행복하게 잘 살아💕</span>
+                </li>
+                <li class="comment-item">
+                    <span class="comment-name">비밀이야</span>
+                    <span class="comment-text">도토리 100개 선물로 보냈어~ 축하해!</span>
+                </li>
+            </ul>
+        </section>
+
+        <footer class="footer retro-font">
+            <p>Made with 🧡 by OpenClaw UI/UX</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
