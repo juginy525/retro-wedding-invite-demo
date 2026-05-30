@@ -82,6 +82,8 @@
             color: var(--text-main);
             letter-spacing: 1px;
             transform: rotate(-2deg); /* 손으로 쓴 듯 살짝 삐뚤게 */
+            display: inline-block;
+            animation: wiggle 0.4s infinite alternate ease-in-out;
         }
 
         .hero-date {
@@ -95,6 +97,41 @@
             transform: rotate(1deg);
             margin-bottom: 12px;
             border: 2px solid var(--text-main);
+            animation: wiggle-date 0.5s infinite alternate ease-in-out;
+        }
+
+        /* 선 떨림 애니메이션 (Sketchy Wiggle) */
+        @keyframes wiggle {
+            0% { transform: rotate(-2deg) translate(0, 0); }
+            33% { transform: rotate(-1.5deg) translate(1px, 0.5px); }
+            66% { transform: rotate(-2.5deg) translate(-0.5px, 1px); }
+            100% { transform: rotate(-2deg) translate(0, 0); }
+        }
+
+        @keyframes wiggle-date {
+            0% { transform: rotate(1deg) translate(0, 0); }
+            50% { transform: rotate(1.5deg) translate(1px, -0.5px); }
+            100% { transform: rotate(1deg) translate(0, 0); }
+        }
+
+        /* 낙서 포인트 (Doodle Accents) */
+        .doodle {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.6;
+            font-family: 'Caveat', cursive;
+            user-select: none;
+            z-index: 10;
+        }
+
+        .doodle-star {
+            color: var(--accent-yellow);
+            font-size: 30px;
+        }
+
+        .doodle-heart {
+            color: #ff6b6b;
+            font-size: 22px;
         }
 
         .hero-location {
@@ -341,6 +378,13 @@
 <body>
 
     <div class="mobile-container">
+        <!-- 낙서 요소들 -->
+        <div class="doodle doodle-star" style="top: 80px; left: 20px; transform: rotate(-15deg);">★</div>
+        <div class="doodle doodle-heart" style="top: 150px; right: 30px; transform: rotate(10deg);">♥</div>
+        <div class="doodle doodle-star" style="bottom: 100px; right: 20px; font-size: 20px; transform: rotate(20deg);">★</div>
+        <div class="doodle doodle-heart" style="bottom: 350px; left: 15px; transform: rotate(-10deg);">♥</div>
+        <div class="doodle hand-drawn-font" style="top: 450px; right: 15px; font-size: 14px; transform: rotate(5deg); color: #aaa;">Click! ↗</div>
+
         <!-- 상단 바 -->
         <div class="top-bar hand-drawn-font">
             D-DAY 35
