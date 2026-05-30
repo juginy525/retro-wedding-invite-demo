@@ -110,11 +110,13 @@
             line-height: 1.2;
         }
 
-        .hero-date .emoji {
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            margin-top: -1px; /* 미세하게 위로 조정 */
+        .hero-date .clock-icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 2px;
         }
 
         /* 선 떨림 애니메이션 (Sketchy Wiggle) */
@@ -412,8 +414,8 @@
             <img src="main-image.jpg" class="main-image" alt="진휘 & 인희">
             <h1 class="hero-title hand-drawn-font">Jinhwi & Inhee</h1>
             <div class="hero-date">
-                <span>2026. 07. 04</span>
-                <span class="emoji">🕒</span>
+                <span>2026. 07. 04 SAT</span>
+                <img src="clock-icon.jpg" class="clock-icon" alt="🕒">
                 <span>18:00</span>
             </div>
             <p class="hero-location">더함공동체교회</p>
