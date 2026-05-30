@@ -451,13 +451,35 @@
         }
 
         .lp-record {
-            width: 85%;
-            height: 85%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
+            display: block;
         }
 
-        .lp-record.playing {
+        .lp-wrapper {
+            width: 85%;
+            height: 85%;
+            position: relative;
+        }
+
+        .lp-wrapper.playing {
             animation: rotate-lp 3s linear infinite;
+        }
+
+        .lp-text {
+            position: absolute;
+            font-family: 'Caveat', cursive;
+            font-size: 7px;
+            color: var(--text-main);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            line-height: 1.1;
+            width: 35px;
+            pointer-events: none;
+            font-weight: 700;
         }
 
         @keyframes rotate-lp {
@@ -621,8 +643,11 @@
 
         <!-- BGM 플레이어 -->
         <div class="bgm-controller" id="music-toggle">
-            <img src="music-lp-v2.png" class="lp-record" id="lp-img" alt="BGM">
-            <div class="now-playing" id="music-info">Now Playing: Justin Bieber - EYE CANDY</div>
+            <div class="lp-wrapper" id="lp-wrap">
+                <img src="music-lp.png" class="lp-record" alt="BGM">
+                <div class="lp-text">WEDDING MUSIC</div>
+            </div>
+            <div class="now-playing" id="music-info">Now Playing: Eye candy - 저스틴 비버</div>
         </div>
         <audio id="bgm" loop>
             <source src="bgm_eyecandy.mp3" type="audio/mpeg">
@@ -632,18 +657,18 @@
     <script>
         const bgm = document.getElementById('bgm');
         const musicToggle = document.getElementById('music-toggle');
-        const lpImg = document.getElementById('lp-img');
+        const lpWrap = document.getElementById('lp-wrap');
         const musicInfo = document.getElementById('music-info');
         let isPlaying = false;
 
         musicToggle.addEventListener('click', () => {
             if (isPlaying) {
                 bgm.pause();
-                lpImg.classList.remove('playing');
+                lpWrap.classList.remove('playing');
                 musicInfo.classList.remove('visible');
             } else {
                 bgm.play().catch(e => console.log("Audio play blocked by browser"));
-                lpImg.classList.add('playing');
+                lpWrap.classList.add('playing');
                 musicInfo.classList.add('visible');
                 // 3초 후 정보 숨기기
                 setTimeout(() => {
