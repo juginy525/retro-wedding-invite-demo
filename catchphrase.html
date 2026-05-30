@@ -8,30 +8,38 @@
     <style>
         body {
             margin: 0;
-            padding: 50px;
+            padding: 20px;
+            background-color: transparent;
+            display: inline-block;
+        }
+        .container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
             background-color: #FFFFFF;
         }
         .hero-catchphrase {
             font-family: 'Caveat', cursive;
-            font-size: 150px;
+            font-size: 100px;
             color: #1A1A1A;
             margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
+            line-height: 1;
             white-space: nowrap;
+            user-select: none;
         }
         .drawn-heart {
-            width: 120px;
-            height: 120px;
-            transform: translateY(10px) rotate(5deg);
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+            transform: translateY(5px) rotate(5deg);
         }
     </style>
 </head>
 <body>
-    <div class="hero-catchphrase" id="target">
-        Nothing Fancy, Just Love
+    <div class="container" id="target">
+        <div class="hero-catchphrase">Nothing Fancy, Just Love</div>
         <svg class="drawn-heart" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <filter id="pencil">
                 <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="3" result="noise" />
