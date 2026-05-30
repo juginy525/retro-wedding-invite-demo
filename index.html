@@ -426,6 +426,67 @@
             box-shadow: 4px 4px 0px var(--text-main);
             word-break: keep-all;
         }
+
+        /* BGM 컨트롤러 */
+        .bgm-controller {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border: 2px solid var(--text-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 4px 4px 0px var(--text-main);
+            transition: transform 0.2s;
+        }
+
+        .bgm-controller:active {
+            transform: scale(0.9);
+        }
+
+        .lp-record {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+        }
+
+        .lp-record.playing {
+            animation: rotate-lp 3s linear infinite;
+        }
+
+        @keyframes rotate-lp {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .now-playing {
+            position: absolute;
+            right: 70px;
+            bottom: 15px;
+            background-color: white;
+            border: 2px solid var(--text-main);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-family: 'Caveat', cursive;
+            font-size: 14px;
+            white-space: nowrap;
+            box-shadow: 2px 2px 0px var(--text-main);
+            opacity: 0;
+            transition: opacity 0.5s, transform 0.5s;
+            transform: translateX(10px);
+            pointer-events: none;
+        }
+
+        .now-playing.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body>
@@ -557,9 +618,41 @@
         <footer class="footer hand-drawn-font">
             Made with ♥ by OpenClaw
         </footer>
+
+        <!-- BGM 플레이어 -->
+        <div class="bgm-controller" id="music-toggle">
+            <img src="music-lp.png" class="lp-record" id="lp-img" alt="BGM">
+            <div class="now-playing" id="music-info">Now Playing: 모든 날, 모든 순간 (Cover)</div>
+        </div>
+        <audio id="bgm" loop>
+            <source src="bgm.mp3" type="audio/mpeg">
+        </audio>
     </div>
 
     <script>
+        const bgm = document.getElementById('bgm');
+        const musicToggle = document.getElementById('music-toggle');
+        const lpImg = document.getElementById('lp-img');
+        const musicInfo = document.getElementById('music-info');
+        let isPlaying = false;
+
+        musicToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                bgm.pause();
+                lpImg.classList.remove('playing');
+                musicInfo.classList.remove('visible');
+            } else {
+                bgm.play().catch(e => console.log("Audio play blocked by browser"));
+                lpImg.classList.add('playing');
+                musicInfo.classList.add('visible');
+                // 3초 후 정보 숨기기
+                setTimeout(() => {
+                    musicInfo.classList.remove('visible');
+                }, 3000);
+            }
+            isPlaying = !isPlaying;
+        });
+
         function updateCountdown() {
             const target = new Date("2026-07-04T18:00:00+09:00").getTime();
             const now = new Date().getTime();
