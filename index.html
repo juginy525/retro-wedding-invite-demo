@@ -67,23 +67,6 @@
             border-bottom: var(--border-drawn);
         }
 
-        .hero-catchphrase {
-            font-size: 38px;
-            color: var(--text-main);
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            transform: rotate(-2deg);
-        }
-
-        .drawn-heart {
-            width: 34px;
-            height: 34px;
-            transform: translateY(2px) rotate(5deg);
-        }
-
         .main-image {
             width: 95%;
             max-height: 60vh; /* 화면의 60% 이상을 차지하도록 설정 */
@@ -323,17 +306,6 @@
 
         <!-- 메인 히어로 -->
         <header class="hero-section">
-            <p class="hero-catchphrase hand-drawn-font">
-                Nothing Fancy, Just Love
-                <svg class="drawn-heart" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <!-- 색연필 느낌을 내기 위해 필터를 추가하고 겹치는 선으로 구현 -->
-                    <filter id="pencil">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="3" result="noise" />
-                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
-                    </filter>
-                    <path d="M 20 90 C 25 75, 10 30, 25 15 C 40 5, 50 30, 50 45 C 50 30, 65 5, 80 15 C 95 30, 60 75, 40 85 C 30 90, 25 90, 15 95" fill="none" stroke="#e01a1a" stroke-width="6" stroke-linecap="round" filter="url(#pencil)" />
-                </svg>
-            </p>
             <img src="main-image.jpg" class="main-image" alt="진휘 & 인희">
             <h1 class="hero-title hand-drawn-font">Jinhwi & Inhee</h1>
             <p class="hero-date hand-drawn-font">2026. 07. 04</p>
