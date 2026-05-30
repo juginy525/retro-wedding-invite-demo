@@ -282,6 +282,46 @@
             background-color: var(--text-main);
             color: white;
         }
+
+        /* 사진첩 */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .photo-item {
+            background-color: white;
+            border: 2px solid var(--text-main);
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transform: rotate(-1deg);
+        }
+
+        .photo-item:nth-child(even) {
+            transform: rotate(2deg);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+
+        .photo-placeholder {
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: var(--text-muted);
+            text-align: center;
+        }
         
         .no-gift-badge {
             display: inline-block;
@@ -354,28 +394,42 @@
                 </div>
                 
                 <div class="map-buttons">
-                    <a href="#" class="btn-map">네이버 지도</a>
-                    <a href="#" class="btn-map">카카오맵</a>
+                    <a href="https://map.naver.com/v5/search/%EC%9D%B8%EC%B2%9C%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%AF%B8%EC%B%94%ED%99%80%EA%B5%AC%20%EC%A3%BC%EC%95%88%EC%A4%91%EB%A1%9C%2016" target="_blank" class="btn-map">네이버 지도</a>
+                    <a href="https://map.kakao.com/link/search/%EC%9D%B8%EC%B2%9C%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%AF%B8%EC%B%94%ED%99%80%EA%B5%AC%20%EC%A3%BC%EC%95%88%EC%A4%91%EB%A1%9C%2016" target="_blank" class="btn-map">카카오맵</a>
                 </div>
             </div>
         </section>
 
-        <!-- 방명록 -->
+        <!-- 주차 안내 -->
         <section class="section">
-            <h2 class="section-title hand-drawn-font">Guestbook</h2>
-            <div class="guestbook-form">
-                <input type="text" class="guestbook-input" placeholder="축하 메시지를 남겨주세요 ✍️">
-                <button class="guestbook-submit">등록</button>
+            <h2 class="section-title hand-drawn-font">Parking</h2>
+            <div class="info-box">
+                <div class="info-item" style="margin-bottom: 0;">
+                    <strong class="hand-drawn-font">Parking Info</strong>
+                    <p>현재 근처 주차장을 확인 중입니다.</p>
+                    <p>장소가 확정되는 대로 약도와 함께</p>
+                    <p>상세 정보를 업데이트하겠습니다! 🚗</p>
+                </div>
             </div>
-            <ul class="comment-list">
-                <li class="comment-item">
-                    <div class="comment-header">
-                        <span class="comment-name">친구 1호</span>
-                        <span class="comment-date">2026.05.29</span>
-                    </div>
-                    <span class="comment-text">결혼 너무너무 축하해! 그림 완전 너네 스타일이다 ㅋㅋㅋ 🕺💃</span>
-                </li>
-            </ul>
+        </section>
+
+        <!-- 사진첩 -->
+        <section class="section">
+            <h2 class="section-title hand-drawn-font">Photo Album</h2>
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <div class="photo-placeholder">Coming<br>Soon</div>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-placeholder">Coming<br>Soon</div>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-placeholder">Coming<br>Soon</div>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-placeholder">Coming<br>Soon</div>
+                </div>
+            </div>
         </section>
 
         <footer class="footer hand-drawn-font">
