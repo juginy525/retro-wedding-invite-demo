@@ -386,15 +386,15 @@
 
     <div class="mobile-container">
         <!-- 상단 바 -->
-        <div class="top-bar hand-drawn-font">
-            D-DAY 35
+        <div class="top-bar hand-drawn-font" id="d-day-counter">
+            D-DAY
         </div>
 
         <!-- 메인 히어로 -->
         <header class="hero-section">
             <img src="main-image.jpg" class="main-image" alt="진휘 & 인희">
             <h1 class="hero-title hand-drawn-font">Jinhwi & Inhee</h1>
-            <p class="hero-date hand-drawn-font">2026. 07. 04 18시</p>
+            <p class="hero-date hand-drawn-font">2026. 07. 04 🕒 18:00</p>
             <p class="hero-location">더함공동체교회</p>
             
             <div class="no-gift-badge">
@@ -481,5 +481,27 @@
         </footer>
     </div>
 
+    <script>
+        function updateCountdown() {
+            const target = new Date("2026-07-04T18:00:00+09:00").getTime();
+            const now = new Date().getTime();
+            const diff = target - now;
+
+            const el = document.getElementById("d-day-counter");
+            if (diff <= 0) {
+                el.innerHTML = "HAPPY WEDDING DAY! ❤️";
+                return;
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            el.innerHTML = `D-DAY ${d}일 ${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 </body>
 </html>
