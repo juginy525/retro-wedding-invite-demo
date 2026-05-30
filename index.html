@@ -68,31 +68,16 @@
             background-color: #fdfbf7;
         }
 
-        .pixel-art-placeholder {
-            width: 160px;
-            height: 160px;
+        .main-image {
+            width: 85%;
+            max-width: 320px;
             margin: 0 auto 24px;
-            background-color: #fff;
+            display: block;
             border: var(--solid-border);
             border-radius: var(--radius);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             box-shadow: 4px 4px 0px rgba(85, 85, 85, 0.1);
-            position: relative;
-        }
-
-        .pixel-art-placeholder::after {
-            content: "💑";
-            font-size: 60px;
-            image-rendering: pixelated;
-        }
-
-        .pixel-art-placeholder p {
-            margin-top: 10px;
-            font-size: 12px;
-            color: var(--accent-orange);
+            background-color: #fff;
+            padding: 10px;
         }
 
         .hero-title {
@@ -316,9 +301,7 @@
 
         <!-- 메인 히어로 -->
         <header class="hero-section">
-            <div class="pixel-art-placeholder retro-font">
-                <p>[도트 미니미 커플]</p>
-            </div>
+            <img src="main-image.jpg" class="main-image" alt="진휘 & 인희">
             <h1 class="hero-title retro-font">진휘 <span>&amp;</span> 인희</h1>
             <p class="hero-date retro-font">2026. 07. 04. SAT 18:00</p>
             <p class="hero-location">더함공동체교회</p>
