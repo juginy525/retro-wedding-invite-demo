@@ -4,20 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>우리 결혼합니다 💍</title>
-    <link href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-body: #e8ecef;
-            --bg-container: #ffffff;
-            --text-main: #333333;
-            --text-muted: #777777;
-            --accent-orange: #ff6b6b;
-            --accent-blue: #4dabf7;
-            --accent-green: #03c75a; /* Naver */
-            --accent-yellow: #fee500; /* Kakao */
-            --border-color: #eaeaea;
-            --solid-border: 2px solid #555555;
-            --radius: 12px;
+            --bg-container: #F9F9F0; /* 따뜻한 미색 */
+            --text-main: #1A1A1A; /* 강렬한 잉크 블랙 */
+            --text-muted: #555555;
+            --accent-yellow: #FFD700; /* 머스타드 옐로우 */
+            --border-drawn: 2px dashed #1A1A1A; /* 손으로 그린 듯한 점선 */
         }
 
         * {
@@ -27,7 +24,7 @@
         }
 
         body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Noto Sans KR', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
             display: flex;
@@ -39,107 +36,116 @@
             width: 100%;
             max-width: 420px;
             background-color: var(--bg-container);
+            /* 노이즈 텍스처 삽입 */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
             min-height: 100vh;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             position: relative;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .retro-font {
-            font-family: 'Galmuri11', sans-serif; /* 픽셀 폰트 */
+        .hand-drawn-font {
+            font-family: 'Caveat', cursive;
         }
 
-        /* 미니홈피 상단 바 느낌 (깔끔하게 개선) */
+        /* 미니홈피 상단 바 느낌 -> 심플한 날짜 표시로 변경 */
         .top-bar {
-            background-color: var(--accent-orange);
+            background-color: var(--text-main);
             color: white;
-            padding: 10px 16px;
+            padding: 12px 16px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            font-size: 13px;
-            border-bottom: var(--solid-border);
+            font-size: 18px;
+            letter-spacing: 2px;
+            border-bottom: 3px solid var(--text-main);
         }
 
         .hero-section {
-            padding: 50px 20px 40px;
+            padding: 40px 20px;
             text-align: center;
-            border-bottom: 1px dashed var(--border-color);
-            background-color: #fdfbf7;
+            border-bottom: var(--border-drawn);
         }
 
         .main-image {
-            width: 85%;
-            max-width: 320px;
+            width: 95%;
+            max-height: 60vh; /* 화면의 60% 이상을 차지하도록 설정 */
+            object-fit: contain;
             margin: 0 auto 24px;
             display: block;
-            border: var(--solid-border);
-            border-radius: var(--radius);
-            box-shadow: 4px 4px 0px rgba(85, 85, 85, 0.1);
-            background-color: #fff;
-            padding: 10px;
+            mix-blend-mode: multiply; /* 흰색 배경을 투명하게 날려 미색 텍스처와 자연스럽게 어우러짐 */
         }
 
         .hero-title {
-            font-size: 26px;
+            font-size: 42px;
             margin-bottom: 12px;
             color: var(--text-main);
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            transform: rotate(-2deg); /* 손으로 쓴 듯 살짝 삐뚤게 */
         }
 
         .hero-date {
-            font-size: 16px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            letter-spacing: 1px;
+            display: inline-block;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-main);
+            background-color: var(--accent-yellow); /* 포인트 컬러 */
+            padding: 4px 16px;
+            border-radius: 50px;
+            transform: rotate(1deg);
+            margin-bottom: 12px;
+            border: 2px solid var(--text-main);
         }
 
         .hero-location {
-            font-size: 14px;
-            color: var(--text-main);
-            font-weight: 500;
+            font-size: 15px;
+            font-weight: 700;
+            margin-top: 10px;
         }
 
         .section {
-            padding: 40px 24px;
-            border-bottom: 1px dashed var(--border-color);
+            padding: 50px 24px;
+            border-bottom: var(--border-drawn);
         }
 
         .section-title {
-            font-size: 18px;
+            font-size: 32px;
             margin-bottom: 24px;
-            color: var(--accent-blue);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            justify-content: center;
+            color: var(--text-main);
+            text-align: center;
+            position: relative;
         }
 
-        .section-title::before, .section-title::after {
-            content: "◈";
-            font-size: 10px;
-            color: var(--accent-orange);
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 4px;
+            background-color: var(--accent-yellow);
+            margin: 8px auto 0;
+            border-radius: 10px;
         }
 
         .greeting-text {
             text-align: center;
             font-size: 15px;
-            line-height: 1.8;
-            color: #444;
+            line-height: 1.9;
+            font-weight: 500;
             word-break: keep-all;
         }
 
         .info-box {
-            background: #fafafa;
-            border: 1px solid #eee;
-            border-radius: var(--radius);
+            background: transparent;
+            border: 2px solid var(--text-main);
+            border-radius: 12px 24px 16px 28px; /* 비대칭 손그림 느낌 */
             padding: 24px;
             margin-top: 16px;
             text-align: center;
+            box-shadow: 4px 4px 0px var(--text-main);
         }
 
         .info-item {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .info-item:last-child {
@@ -148,25 +154,24 @@
 
         .info-item strong {
             display: inline-block;
-            font-size: 14px;
-            color: var(--accent-orange);
+            font-size: 20px;
+            color: var(--text-main);
             margin-bottom: 8px;
-            background: #fff3f0;
-            padding: 4px 12px;
-            border-radius: 20px;
+            border-bottom: 8px solid var(--accent-yellow);
+            line-height: 0.6; /* 형광펜 효과 */
         }
 
         .info-item p {
-            font-size: 14.5px;
-            color: #333;
+            font-size: 15px;
+            font-weight: 500;
             line-height: 1.6;
         }
 
         /* 맵 버튼들 */
         .map-buttons {
             display: flex;
-            gap: 10px;
-            margin-top: 16px;
+            gap: 12px;
+            margin-top: 24px;
             justify-content: center;
         }
 
@@ -174,119 +179,120 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px 16px;
-            border-radius: 8px;
+            padding: 12px 16px;
+            border-radius: 50px; /* 완전히 둥근 알약 형태 */
             text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-            border: 1px solid rgba(0,0,0,0.1);
-            transition: opacity 0.2s;
+            font-size: 15px;
+            font-weight: 700;
+            color: white;
+            background-color: var(--text-main);
+            border: 2px solid var(--text-main);
+            transition: transform 0.1s;
             flex: 1;
         }
 
         .btn-map:active {
-            opacity: 0.7;
+            transform: scale(0.95);
+            background-color: #333;
         }
 
-        .btn-naver {
-            background-color: var(--accent-green);
-            color: white;
-            border: none;
-        }
-
-        .btn-kakao {
-            background-color: var(--accent-yellow);
-        }
-
-        /* 일촌평 (방명록) */
+        /* 일촌평 -> 방명록 */
         .guestbook-form {
             display: flex;
             gap: 8px;
-            margin-bottom: 24px;
+            margin-bottom: 30px;
         }
 
         .guestbook-input {
             flex: 1;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+            padding: 14px 20px;
+            border: 2px solid var(--text-main);
+            border-radius: 50px;
             font-size: 14px;
             font-family: inherit;
-            background-color: #fafafa;
+            background-color: transparent;
             outline: none;
         }
         
         .guestbook-input:focus {
-            border-color: var(--accent-blue);
+            background-color: rgba(255, 215, 0, 0.1);
         }
 
         .guestbook-submit {
-            background-color: var(--accent-blue);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0 20px;
+            background-color: var(--accent-yellow);
+            color: var(--text-main);
+            border: 2px solid var(--text-main);
+            border-radius: 50px;
+            padding: 0 24px;
             cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.2s;
+            font-size: 15px;
+            font-weight: 700;
+            transition: transform 0.1s;
         }
 
         .guestbook-submit:active {
-            background-color: #3b99e0;
+            transform: scale(0.95);
         }
 
         .comment-list {
             list-style: none;
+            padding: 0 10px;
         }
 
         .comment-item {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
             font-size: 14px;
-            padding: 12px 0;
-            border-bottom: 1px dashed #eee;
+            padding: 16px 0;
+            border-bottom: 2px dashed #ddd;
+        }
+
+        .comment-item:last-child {
+            border-bottom: none;
         }
 
         .comment-header {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .comment-name {
-            font-weight: 600;
-            color: var(--text-main);
+            font-weight: 700;
+            font-size: 15px;
         }
         
         .comment-date {
-            font-size: 11px;
-            color: #aaa;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: 'Caveat', cursive;
+            font-size: 16px;
         }
 
         .comment-text {
-            color: #555;
-            margin-top: 4px;
+            color: var(--text-main);
+            font-weight: 500;
         }
 
         .footer {
             text-align: center;
-            padding: 30px;
-            font-size: 12px;
-            color: #aaa;
-            background-color: var(--bg-container);
+            padding: 40px;
+            font-size: 16px;
+            background-color: var(--text-main);
+            color: white;
         }
         
         .no-gift-badge {
             display: inline-block;
-            background-color: #f0f5ff;
-            color: var(--accent-blue);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            margin-top: 20px;
-            font-weight: 500;
+            background-color: var(--text-main);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 24px;
+            border: 2px solid var(--text-main);
         }
     </style>
 </head>
@@ -294,93 +300,77 @@
 
     <div class="mobile-container">
         <!-- 상단 바 -->
-        <div class="top-bar retro-font">
-            <span>TODAY 26 | TOTAL 2026</span>
-            <span>https://mini.wedding/j2</span>
+        <div class="top-bar hand-drawn-font">
+            D-DAY 35
         </div>
 
         <!-- 메인 히어로 -->
         <header class="hero-section">
             <img src="main-image.jpg" class="main-image" alt="진휘 & 인희">
-            <h1 class="hero-title retro-font">진휘 <span>&amp;</span> 인희</h1>
-            <p class="hero-date retro-font">2026. 07. 04. SAT 18:00</p>
+            <h1 class="hero-title hand-drawn-font">Jinhwi & Inhee</h1>
+            <p class="hero-date hand-drawn-font">2026. 07. 04</p>
             <p class="hero-location">더함공동체교회</p>
             
-            <div class="no-gift-badge retro-font">
-                💌 축의금 없는 결혼식으로 진행됩니다
+            <div class="no-gift-badge">
+                💌 마음만 감사히 받겠습니다 (축의금 사양)
             </div>
         </header>
 
         <!-- 인사말 -->
         <section class="section">
-            <h2 class="section-title retro-font">초대의 글</h2>
+            <h2 class="section-title hand-drawn-font">Invitation</h2>
             <div class="greeting-text">
-                <p>싸이월드 브금으로 마음을 전하던 그 시절처럼,</p>
-                <p>저희 두 사람이 만나 평생의 '일촌'을 맺으려 합니다.</p>
+                <p>유쾌하고 따뜻한 두 사람이 만나</p>
+                <p>평생을 함께 춤추듯 살아가려 합니다.</p>
                 <br>
-                <p>서로를 아끼고 존중하며</p>
-                <p>예쁘게 살아가는 모습을</p>
-                <p>가까이서 지켜봐 주시면 감사하겠습니다.</p>
-                <br>
-                <p style="font-size: 13px; color: var(--text-muted);">(본 예식은 축의금을 정중히 사양합니다.)</p>
+                <p>서로를 향한 발걸음이 시작되는 날,</p>
+                <p>그 기쁜 순간에 소중한 분들을 초대합니다.</p>
+                <p>가벼운 발걸음으로 오셔서 축하해 주세요!</p>
             </div>
         </section>
 
         <!-- 예식장 정보 -->
         <section class="section">
-            <h2 class="section-title retro-font">오시는 길</h2>
+            <h2 class="section-title hand-drawn-font">Location</h2>
             <div class="info-box">
                 <div class="info-item">
-                    <strong class="retro-font">일시</strong>
+                    <strong class="hand-drawn-font">When</strong>
                     <p>2026년 7월 4일 토요일 저녁 6시</p>
                 </div>
                 <div class="info-item">
-                    <strong class="retro-font">장소</strong>
-                    <p style="font-weight: bold; font-size: 16px; margin-bottom: 4px;">더함공동체교회</p>
-                    <p style="font-size: 13px; color: #666;">인천광역시 미추홀구 주안중로 16</p>
-                    <p style="font-size: 13px; color: #666;">신동아화재 인천지사 더함빌딩 7층</p>
+                    <strong class="hand-drawn-font">Where</strong>
+                    <p style="font-weight: 700; font-size: 17px; margin-bottom: 6px;">더함공동체교회</p>
+                    <p style="font-size: 14px; color: #444;">인천광역시 미추홀구 주안중로 16</p>
+                    <p style="font-size: 14px; color: #444;">더함빌딩 7층</p>
                 </div>
                 
-                <div class="map-buttons retro-font">
-                    <a href="https://map.naver.com/v5/search/%EC%9D%B8%EC%B2%9C%20%EB%AF%B8%EC%B6%94%ED%99%80%EA%B5%AC%20%EC%A3%BC%EC%95%88%EC%A4%91%EB%A1%9C%2016" target="_blank" class="btn-map btn-naver">네이버 지도</a>
-                    <a href="https://map.kakao.com/link/search/%EC%9D%B8%EC%B2%9C%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%AF%B8%EC%B6%94%ED%99%80%EA%B5%AC%20%EC%A3%BC%EC%95%88%EC%A4%91%EB%A1%9C%2016" target="_blank" class="btn-map btn-kakao">카카오맵</a>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 주차장 안내 -->
-        <section class="section">
-            <h2 class="section-title retro-font">주차 안내</h2>
-            <div class="info-box">
-                <div class="info-item" style="margin-bottom: 0;">
-                    <strong class="retro-font">주차장 이용</strong>
-                    <p>더함빌딩 건물 내 지하주차장을</p>
-                    <p>무료로 이용하실 수 있습니다.</p>
-                    <p style="font-size: 12px; color: #888; margin-top: 8px;">* 만차 시 인근 공영주차장 이용을 부탁드립니다.</p>
+                <div class="map-buttons">
+                    <a href="#" class="btn-map">네이버 지도</a>
+                    <a href="#" class="btn-map">카카오맵</a>
                 </div>
             </div>
         </section>
 
-        <!-- 일촌평 -->
+        <!-- 방명록 -->
         <section class="section">
-            <h2 class="section-title retro-font">방명록 (일촌평)</h2>
+            <h2 class="section-title hand-drawn-font">Guestbook</h2>
             <div class="guestbook-form">
-                <input type="text" class="guestbook-input" placeholder="축하의 한마디를 남겨주세요!">
-                <button class="guestbook-submit retro-font" onclick="alert('일촌평이 등록되었습니다! (퍼블리싱 데모)')">확인</button>
+                <input type="text" class="guestbook-input" placeholder="축하 메시지를 남겨주세요 ✍️">
+                <button class="guestbook-submit">등록</button>
             </div>
             <ul class="comment-list">
                 <li class="comment-item">
                     <div class="comment-header">
-                        <span class="comment-name">퍼가요~♡</span>
-                        <span class="comment-date">2026.05.28</span>
+                        <span class="comment-name">친구 1호</span>
+                        <span class="comment-date">2026.05.29</span>
                     </div>
-                    <span class="comment-text">결혼 넘넘 축하해!! 행복하게 잘 살아💕</span>
+                    <span class="comment-text">결혼 너무너무 축하해! 그림 완전 너네 스타일이다 ㅋㅋㅋ 🕺💃</span>
                 </li>
             </ul>
         </section>
 
-        <footer class="footer retro-font">
-            <p>Made with 🧡 by OpenClaw UI/UX</p>
+        <footer class="footer hand-drawn-font">
+            Made with ♥ by OpenClaw
         </footer>
     </div>
 
