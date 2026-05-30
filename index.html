@@ -660,22 +660,47 @@
         const lpWrap = document.getElementById('lp-wrap');
         const musicInfo = document.getElementById('music-info');
         let isPlaying = false;
+        let interactionTriggered = false;
 
-        musicToggle.addEventListener('click', () => {
+        function playMusic() {
+            if (!isPlaying) {
+                bgm.play().then(() => {
+                    isPlaying = true;
+                    lpWrap.classList.add('playing');
+                    musicInfo.classList.add('visible');
+                    setTimeout(() => {
+                        musicInfo.classList.remove('visible');
+                    }, 3000);
+                }).catch(e => console.log("Audio play blocked by browser"));
+            }
+        }
+
+        // 첫 터치/클릭 시 자동 재생 트리거 (브라우저 정책 대응)
+        window.addEventListener('touchstart', () => {
+            if (!interactionTriggered) {
+                playMusic();
+                interactionTriggered = true;
+            }
+        }, { once: true });
+
+        window.addEventListener('click', () => {
+            if (!interactionTriggered) {
+                playMusic();
+                interactionTriggered = true;
+            }
+        }, { once: true });
+
+        musicToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // 윈도우 클릭 이벤트 방지
             if (isPlaying) {
                 bgm.pause();
                 lpWrap.classList.remove('playing');
                 musicInfo.classList.remove('visible');
             } else {
-                bgm.play().catch(e => console.log("Audio play blocked by browser"));
-                lpWrap.classList.add('playing');
-                musicInfo.classList.add('visible');
-                // 3초 후 정보 숨기기
-                setTimeout(() => {
-                    musicInfo.classList.remove('visible');
-                }, 3000);
+                playMusic();
             }
             isPlaying = !isPlaying;
+            interactionTriggered = true;
         });
 
         function updateCountdown() {
