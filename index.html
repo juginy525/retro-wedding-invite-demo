@@ -509,9 +509,220 @@
             opacity: 1;
             transform: translateX(0);
         }
+
+        /* --- 인트로 봉투 애니메이션 CSS --- */
+        body.locked {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .envelope-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-body);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease 1.2s, visibility 0.8s ease 1.2s; /* 속지 올라오는 시간 후 페이드아웃 */
+        }
+
+        .envelope-overlay.opened {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: #f3e5c8; /* 따뜻한 편지봉투 색상 */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 튀어나오는 청첩장 속지 */
+        .envelope-letter {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 180px;
+            background-color: #F9F9F0;
+            border: 2px dashed #d4c5a9;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 30px;
+            transition: transform 0.8s ease 0.4s;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .letter-text {
+            font-family: 'Caveat', cursive;
+            font-size: 28px;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        /* 봉투 왼쪽 날개 */
+        .envelope-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 100px 0 100px 150px;
+            border-color: transparent transparent transparent #ebd9b4;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* 봉투 오른쪽 날개 */
+        .envelope-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 100px 150px 100px 0;
+            border-color: transparent #ebd9b4 transparent transparent;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* 봉투 아래 날개 */
+        .envelope-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 150px 110px 150px;
+            border-color: transparent transparent #e4d0a5 transparent;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* 봉투 위 날개(덮개) */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 115px 150px 0 150px;
+            border-color: #dcc496 transparent transparent transparent;
+            transform-origin: top;
+            transition: transform 0.6s ease, z-index 0s 0.3s;
+            z-index: 4;
+            pointer-events: none;
+            filter: drop-shadow(0 3px 3px rgba(0,0,0,0.05));
+        }
+
+        .envelope-text {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            color: #8c7b4c;
+            z-index: 5;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        /* 씰(스티커) 느낌 추가 */
+        .envelope-seal {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background-color: #a83232; /* 붉은색 왁스 씰 느낌 */
+            border-radius: 50%;
+            z-index: 6;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.3), 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .envelope-seal::after {
+            content: "W";
+            font-family: 'Dancing Script', cursive;
+            color: #ebb8b8;
+            font-size: 20px;
+            margin-top: 2px;
+        }
+
+        /* 애니메이션 클래스 적용 시 */
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .envelope.open .envelope-text,
+        .envelope.open .envelope-seal {
+            opacity: 0;
+        }
+
+        .envelope.open .envelope-letter {
+            transform: translateY(-100px);
+        }
+
+        .envelope-guide {
+            margin-top: 40px;
+            font-family: 'Noto Sans KR', sans-serif;
+            color: var(--text-muted);
+            font-size: 15px;
+            animation: bounce 2s infinite;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
     </style>
 </head>
-<body>
+<body class="locked">
+
+    <!-- 인트로 봉투 오버레이 -->
+    <div id="envelope-overlay" class="envelope-overlay">
+        <div class="envelope" id="envelope-btn">
+            <div class="envelope-letter">
+                <div class="letter-text">Wedding Invitation</div>
+            </div>
+            <div class="envelope-left"></div>
+            <div class="envelope-right"></div>
+            <div class="envelope-bottom"></div>
+            <div class="envelope-flap"></div>
+            <div class="envelope-text">Open</div>
+            <div class="envelope-seal"></div>
+        </div>
+        <div class="envelope-guide">봉투를 터치해주세요</div>
+    </div>
 
     <div class="mobile-container">
         <!-- 상단 바 -->
@@ -723,6 +934,27 @@
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
+
+        // 인트로 봉투 애니메이션 스크립트
+        const envelopeBtn = document.getElementById('envelope-btn');
+        const envelopeOverlay = document.getElementById('envelope-overlay');
+
+        if (envelopeBtn && envelopeOverlay) {
+            envelopeBtn.addEventListener('click', function(e) {
+                // 봉투 열림 애니메이션 시작
+                envelopeBtn.classList.add('open');
+                
+                // 안내 문구 숨기기
+                const guide = document.querySelector('.envelope-guide');
+                if(guide) guide.style.opacity = '0';
+
+                // 1.5초 뒤에 오버레이 완전히 사라지게 하고 스크롤 잠금 해제
+                setTimeout(() => {
+                    envelopeOverlay.classList.add('opened');
+                    document.body.classList.remove('locked');
+                }, 1500);
+            });
+        }
     </script>
 </body>
 </html>
