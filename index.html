@@ -6,7 +6,7 @@
     <title>우리 결혼합니다 💍</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400;500;700&family=Quicksand:wght@600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400;500;700&family=Quicksand:wght@600&family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-body: #e8ecef;
@@ -35,18 +35,34 @@
         .mobile-container {
             width: 100%;
             max-width: 420px;
-            background-color: #F5F2E1;
+            background-color: #F2EEE1;
             background-image: 
-                /* 미세 노이즈 오버레이 */
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"),
-                /* 코튼 종이 질감 */
-                url('cotton_paper_v2.jpg');
-            background-size: auto, 400px 400px; /* 텍스처 타일링 크기 조절 */
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"),
+                url('cotton_paper_v3.jpg');
+            background-size: auto, 500px 500px;
             background-repeat: repeat;
             min-height: 100vh;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1), inset 0 0 50px rgba(0,0,0,0.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1), inset 0 0 100px rgba(0,0,0,0.05);
             position: relative;
             overflow-x: hidden;
+        }
+
+        /* 레터프레스 (음각) 효과 - 더 깊게 파인 느낌 */
+        .letterpress {
+            color: rgba(0, 0, 0, 0.65); 
+            text-shadow: 
+                -1.5px -1.5px 1px rgba(0, 0, 0, 0.45), /* 안쪽 상단 그림자 */
+                1.5px 1.5px 1px rgba(255, 255, 255, 0.9); /* 바깥쪽 하단 빛 반사 */
+            letter-spacing: 0.5px;
+        }
+
+        .catchphrase {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin: 40px 0 20px 0;
+            font-style: italic;
+            text-align: center;
+            line-height: 1.2;
         }
 
         .hand-drawn-font {
@@ -571,8 +587,8 @@
             left: 25px;
             right: 25px;
             height: 190px;
-            background-color: #F5F2E1;
-            background-image: url('cotton_paper_v2.jpg');
+            background-color: #F2EEE1;
+            background-image: url('cotton_paper_v3.jpg');
             background-size: 300px 300px;
             border: 2px dashed #d4c5a9;
             z-index: 2;
@@ -582,7 +598,7 @@
             padding-top: 30px;
             transition: transform 0.8s ease 0.3s; /* 뚜껑이 먼저 열리고 0.3초 뒤 속지 나옴 */
             border-radius: 4px;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.05), inset 0 0 20px rgba(0,0,0,0.03);
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.05), inset 0 0 20px rgba(0,0,0,0.05);
         }
 
         .letter-text {
@@ -693,6 +709,7 @@
 
         <!-- 메인 히어로 -->
         <header class="hero-section">
+            <div class="catchphrase letterpress">nothing Fancy , just love</div>
             <img src="main-image.jpg" class="main-image" alt="진휘 & 인희">
             <h1 class="hero-title hand-drawn-font">Jinhwi & Inhee</h1>
             <div class="hero-date">
