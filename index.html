@@ -35,34 +35,37 @@
         .mobile-container {
             width: 100%;
             max-width: 420px;
-            background-color: #F2EEE1;
+            background-color: #F0EBDC;
             background-image: 
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"),
-                url('cotton_paper_v3.jpg');
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E"),
+                url('ultra_cotton_paper.jpg?v=4');
             background-size: auto, 500px 500px;
             background-repeat: repeat;
             min-height: 100vh;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1), inset 0 0 100px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1), inset 0 0 150px rgba(0,0,0,0.1);
             position: relative;
             overflow-x: hidden;
         }
 
-        /* 레터프레스 (음각) 효과 - 더 깊게 파인 느낌 */
-        .letterpress {
-            color: rgba(0, 0, 0, 0.65); 
+        /* 레터프레스 (음각) 효과 - 클래스명 변경으로 캐시 우회 */
+        .debossed-text {
+            display: block;
+            font-family: 'Playfair Display', serif !important;
+            font-size: 34px !important;
+            font-weight: 700 !important;
+            font-style: italic !important;
+            color: rgba(0, 0, 0, 0.6) !important; 
             text-shadow: 
-                -1.5px -1.5px 1px rgba(0, 0, 0, 0.45), /* 안쪽 상단 그림자 */
-                1.5px 1.5px 1px rgba(255, 255, 255, 0.9); /* 바깥쪽 하단 빛 반사 */
-            letter-spacing: 0.5px;
+                -1.5px -1.5px 1px rgba(0, 0, 0, 0.5), /* 안쪽 상단 그림자 */
+                1.5px 1.5px 1.5px rgba(255, 255, 255, 0.95); /* 바깥쪽 하단 하이라이트 */
+            letter-spacing: -0.5px;
+            margin: 40px 0 30px 0;
+            text-align: center;
+            line-height: 1.1;
         }
 
         .catchphrase {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            margin: 40px 0 20px 0;
-            font-style: italic;
-            text-align: center;
-            line-height: 1.2;
+            display: none; /* 이전 클래스 숨김 */
         }
 
         .hand-drawn-font {
@@ -587,8 +590,8 @@
             left: 25px;
             right: 25px;
             height: 190px;
-            background-color: #F2EEE1;
-            background-image: url('cotton_paper_v3.jpg');
+            background-color: #F0EBDC;
+            background-image: url('ultra_cotton_paper.jpg?v=4');
             background-size: 300px 300px;
             border: 2px dashed #d4c5a9;
             z-index: 2;
@@ -598,7 +601,7 @@
             padding-top: 30px;
             transition: transform 0.8s ease 0.3s; /* 뚜껑이 먼저 열리고 0.3초 뒤 속지 나옴 */
             border-radius: 4px;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.05), inset 0 0 20px rgba(0,0,0,0.05);
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.05), inset 0 0 20px rgba(0,0,0,0.08);
         }
 
         .letter-text {
@@ -709,7 +712,7 @@
 
         <!-- 메인 히어로 -->
         <header class="hero-section">
-            <div class="catchphrase letterpress">nothing Fancy , just love</div>
+            <div class="debossed-text">nothing Fancy ,<br>just love ❤️</div>
             <img src="main-image.jpg" class="main-image" alt="진휘 & 인희">
             <h1 class="hero-title hand-drawn-font">Jinhwi & Inhee</h1>
             <div class="hero-date">
