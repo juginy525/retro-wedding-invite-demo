@@ -764,6 +764,35 @@
             background: rgba(255,255,255,0.2);
             border-radius: 50%;
         }
+    
+        .photo-prev, .photo-next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            transition: 0.3s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+            z-index: 100000;
+        }
+        .photo-prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .photo-next {
+            right: 0;
+            border-radius: 0 3px 3px 0;
+        }
+        .photo-prev:hover, .photo-next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
     </style>
 </head>
 <body class="locked">
@@ -936,7 +965,7 @@
                 <div class="album-container">
                     <div class="album-card" onclick="openAlbum('date')">
                         <div class="album-cover">
-                            <img src="photo_001.jpg" alt="데이트 사진" style="display: block;">
+                            <img src="date_001.png" alt="데이트 사진" style="display: block;">
                         </div>
                         <div class="album-info hand-drawn-font">
                             <h3>Our Dates</h3>
@@ -972,6 +1001,8 @@
         <!-- 사진 크게 보기 모달 -->
         <div id="photo-modal" class="photo-modal" style="display: none;">
             <span class="photo-close-modal" onclick="closePhoto()">&times;</span>
+            <span class="photo-prev" onclick="changePhoto(-1)">&#10094;</span>
+            <span class="photo-next" onclick="changePhoto(1)">&#10095;</span>
             <img class="photo-modal-content" id="expanded-img">
         </div>
 
@@ -1088,43 +1119,45 @@
             date: {
                 title: "Our Dates",
                 photos: [
-                    "photo_001.jpg",
-                    "photo_002.jpg",
-                    "photo_003.jpg",
-                    "photo_004.jpg",
-                    "photo_005.jpg",
-                    "photo_006.jpg",
-                    "photo_007.jpg",
-                    "photo_008.jpg",
-                    "photo_009.jpg",
-                    "photo_010.jpg",
-                    "photo_011.jpg",
-                    "photo_012.jpg",
-                    "photo_013.jpg",
-                    "photo_014.jpg",
-                    "photo_015.jpg",
-                    "photo_016.jpg",
-                    "photo_017.jpg",
-                    "photo_018.jpg",
-                    "photo_019.jpg",
-                    "photo_020.jpg",
-                    "photo_021.jpg",
-                    "photo_022.jpg",
-                    "photo_023.jpg",
-                    "photo_024.jpg",
-                    "photo_025.jpg",
-                    "photo_026.jpg",
-                    "photo_027.jpg",
-                    "photo_028.jpg",
-                    "photo_029.jpg",
-                    "photo_030.jpg",
-                    "photo_031.jpg",
-                    "photo_032.jpg",
-                    "photo_033.jpg",
-                    "photo_034.jpg",
-                    "photo_035.jpg",
-                    "photo_036.jpg",
-                    "photo_037.jpg"
+                    "date_001.png",
+                    "date_002.png",
+                    "date_003.png",
+                    "date_004.png",
+                    "date_005.png",
+                    "date_006.png",
+                    "date_007.png",
+                    "date_008.png",
+                    "date_009.png",
+                    "date_010.png",
+                    "date_011.png",
+                    "date_012.png",
+                    "date_013.png",
+                    "date_014.png",
+                    "date_015.png",
+                    "date_016.png",
+                    "date_017.png",
+                    "date_018.png",
+                    "date_019.png",
+                    "date_020.png",
+                    "date_021.png",
+                    "date_022.png",
+                    "date_023.png",
+                    "date_024.png",
+                    "date_025.png",
+                    "date_026.png",
+                    "date_027.png",
+                    "date_028.png",
+                    "date_029.png",
+                    "date_030.png",
+                    "date_031.png",
+                    "date_032.png",
+                    "date_033.png",
+                    "date_034.png",
+                    "date_035.png",
+                    "date_036.png",
+                    "date_037.png",
+                    "date_038.png",
+                    "date_039.png"
                 ]
             },
             wedding: {
@@ -1140,7 +1173,11 @@
             }
         };
 
+        let currentAlbumType = '';
+        let currentPhotoIndex = 0;
+
         function openAlbum(type) {
+            currentAlbumType = type;
             document.getElementById('album-list-view').style.display = 'none';
             document.getElementById('album-detail-view').style.display = 'block';
             document.getElementById('current-album-title').innerText = albumData[type].title;
@@ -1148,10 +1185,10 @@
             const grid = document.getElementById('photo-grid');
             grid.innerHTML = '';
             
-            albumData[type].photos.forEach(photoSrc => {
+            albumData[type].photos.forEach((photoSrc, index) => {
                 const img = document.createElement('img');
                 img.src = photoSrc;
-                img.onclick = () => openPhoto(photoSrc);
+                img.onclick = () => openPhoto(index);
                 grid.appendChild(img);
             });
             
@@ -1170,15 +1207,27 @@
             }, 50);
         }
 
-        function openPhoto(photoSrc) {
+        function openPhoto(index) {
+            currentPhotoIndex = index;
             const modal = document.getElementById('photo-modal');
             const modalImg = document.getElementById('expanded-img');
             modal.style.display = 'flex';
-            modalImg.src = photoSrc;
+            modalImg.src = albumData[currentAlbumType].photos[currentPhotoIndex];
         }
 
         function closePhoto() {
             document.getElementById('photo-modal').style.display = 'none';
+        }
+
+        function changePhoto(direction) {
+            const photos = albumData[currentAlbumType].photos;
+            currentPhotoIndex += direction;
+            if (currentPhotoIndex >= photos.length) {
+                currentPhotoIndex = 0;
+            } else if (currentPhotoIndex < 0) {
+                currentPhotoIndex = photos.length - 1;
+            }
+            document.getElementById('expanded-img').src = photos[currentPhotoIndex];
         }
     </script>
 </body>
